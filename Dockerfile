@@ -9,12 +9,12 @@ ENV        QDB_DEB_VERSION 1
 # NO EDITING BELOW THIS LINE
 #############################
 
-RUN        apt-get install -y wget
-
 # Download install the deb package
-RUN        wget ${QDB_URL}
+RUN        apt-get install -y wget && \
+           wget ${QDB_URL} && \
+           dpkg -i qdb-server_${QDB_VERSION}-${QDB_DEB_VERSION}.deb
+
 ADD        qdb-httpd-docker-wrapper.sh /usr/sbin/
-RUN        dpkg -i qdb-server_${QDB_VERSION}-${QDB_DEB_VERSION}.deb
 
 # Always launch qdb process
 ENTRYPOINT ["/usr/sbin/qdb-httpd-docker-wrapper.sh"]
