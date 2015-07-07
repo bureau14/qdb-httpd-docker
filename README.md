@@ -4,9 +4,11 @@ This repository contains the **Dockerfile** of [QuasarDB](http://www.quasardb.ne
 
 ### Supported tags
 
-* latest: latest stable release;
-* beta: latest beta release;
-* nightly: bleeding edge.
+|tag|description|
+|---|---|
+|`latest`|latest stable release|
+|`beta`|latest beta release|
+|`nightly`|bleeding edge|
 
 ### Base Docker Image
 
