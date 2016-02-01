@@ -1,24 +1,21 @@
 FROM       ubuntu:latest
 
 # User configurable: define versions we are using
-ENV        QDB_VERSION     2.0.0
-ENV        QDB_DEB_VERSION 1
-ENV        QDB_URL         http://download.quasardb.net/quasardb/2.0/2.0.0rc3/web-bridge/qdb-web-bridge_${QDB_VERSION}-${QDB_DEB_VERSION}.deb
+ENV        QDB_URL         https://download.quasardb.net/quasardb/2.0/2.0.0rc3/web-bridge/qdb-2.0.0-linux-64bit-web-bridge.tar.gz
 
 #############################
 # NO EDITING BELOW THIS LINE
 #############################
 
-# Download install the deb package
+# Download and install
 RUN        apt-get install -y wget
-RUN        wget ${QDB_URL}
-RUN        ln -s -f /bin/true /usr/bin/chfn
-RUN        dpkg -i qdb-server_${QDB_VERSION}-${QDB_DEB_VERSION}.deb
+RUN        wget -qO- $QDB_URL | tar xvz -C /usr
+RUN        mkdir -p /usr/share/qdb/ && mv /usr/bin/html /usr/share/qdb/www
 
-ADD        qdb-httpd-docker-wrapper.sh /usr/sbin/
+ADD        qdb-httpd-docker-wrapper.sh /usr/bin/
 
 # Always launch qdb process
-ENTRYPOINT ["/usr/sbin/qdb-httpd-docker-wrapper.sh"]
+ENTRYPOINT ["/usr/bin/qdb-httpd-docker-wrapper.sh"]
 
 # Expose the port qdb-httpd is listening at
 EXPOSE     8080
