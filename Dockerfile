@@ -1,16 +1,9 @@
 FROM       ubuntu:latest
 
-# User configurable: define versions we are using
-ENV        QDB_URL         https://download.quasardb.net/quasardb/2.0/2.0.0rc3/web-bridge/qdb-2.0.0-linux-64bit-web-bridge.tar.gz
+# Decompress the tarball in the container
+ADD        qdb-*-linux-64bit-web-bridge.tar.gz /usr/
 
-#############################
-# NO EDITING BELOW THIS LINE
-#############################
-
-# Download and install
-RUN        apt-get install -y wget
-RUN        wget -qO- $QDB_URL | tar xvz -C /usr
-
+# Add the wrapper script
 ADD        qdb-httpd-docker-wrapper.sh /usr/bin/
 
 # Always launch qdb process
