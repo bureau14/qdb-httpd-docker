@@ -10,7 +10,6 @@ ENV        QDB_URL         https://download.quasardb.net/quasardb/2.0/2.0.0rc3/w
 # Download and install
 RUN        apt-get install -y wget
 RUN        wget -qO- $QDB_URL | tar xvz -C /usr
-RUN        mkdir -p /usr/share/qdb/ && mv /usr/bin/html /usr/share/qdb/www
 
 ADD        qdb-httpd-docker-wrapper.sh /usr/bin/
 
