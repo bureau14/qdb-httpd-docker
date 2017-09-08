@@ -1,9 +1,9 @@
 FROM       ubuntu:latest
 
 # User configurable: define versions we are using
-ENV        QDB_VERSION     2.0.0
+ENV        QDB_VERSION     2.1.0
 ENV        QDB_DEB_VERSION 1
-ENV        QDB_URL         http://download.quasardb.net/quasardb/2.0/2.0.0rc3/web-bridge/qdb-web-bridge_${QDB_VERSION}-${QDB_DEB_VERSION}.deb
+ENV        QDB_URL         http://download.quasardb.net/quasardb/2.1/2.1.0-beta.2/web-bridge/qdb-web-bridge_2.1.0-1.deb
 
 #############################
 # NO EDITING BELOW THIS LINE
@@ -13,7 +13,7 @@ ENV        QDB_URL         http://download.quasardb.net/quasardb/2.0/2.0.0rc3/we
 RUN        apt-get install -y wget
 RUN        wget ${QDB_URL}
 RUN        ln -s -f /bin/true /usr/bin/chfn
-RUN        dpkg -i qdb-server_${QDB_VERSION}-${QDB_DEB_VERSION}.deb
+RUN        dpkg -i qdb-web-bridge_2.1.0-1.deb
 
 ADD        qdb-httpd-docker-wrapper.sh /usr/sbin/
 
