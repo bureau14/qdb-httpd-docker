@@ -1,7 +1,5 @@
 FROM       ubuntu:latest
 
-RUN locale-gen en_US.UTF-8
-
 # Decompress the tarball in the container
 ADD        qdb-*-linux-64bit-web-bridge.tar.gz /usr/
 
