@@ -1,4 +1,4 @@
-FROM       ubuntu:latest
+FROM       ubuntu:xenial
 
 # Decompress the tarball in the container
 ADD        qdb-*-linux-64bit-web-bridge.tar.gz /usr/
